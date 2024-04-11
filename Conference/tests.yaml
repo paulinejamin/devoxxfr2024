@@ -1,0 +1,43 @@
+name: DevoxxFr2024
+model_file: ./model.fga
+tuples: 
+  - user: user:Marco
+    relation: member
+    object: entity:devoxx
+  - user: user:Alice
+    relation: admin
+    object: entity:devoxx
+  - user: user:Sophie
+    relation: staff
+    object: entity:devoxx
+tests:
+  - name: approve_  payments
+    description: Only admins can approve payments
+    check:
+      - user: user:Marco
+        object: entity:devoxx
+        assertions:
+          approve_payments: false
+      - user: user:Alice
+        object: entity:devoxx
+        assertions:
+          approve_payments: true
+      - user: user:Sophie
+        object: entity:devoxx
+        assertions:
+          approve_payments: false
+  - name: view_payments
+    description: Admins and staff can view payments
+    check:
+      - user: user:Marco
+        object: entity:devoxx
+        assertions:
+          view_payments: false
+      - user: user:Alice
+        object: entity:devoxx
+        assertions:
+          view_payments: true
+      - user: user:Sophie
+        object: entity:devoxx
+        assertions:
+          view_payments: true

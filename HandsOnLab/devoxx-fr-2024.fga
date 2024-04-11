@@ -1,0 +1,19 @@
+model
+  schema 1.1
+  
+type user
+
+type car
+  relations
+    define owner: [user]
+    define driver: [family#parent, user with allowed_age] or owner
+    define viewer: [user:*] or driver
+    
+type family
+  relations
+    define parent: [user]
+    define child: [user]
+    
+condition allowed_age(age: int) {
+  age >= 18
+}

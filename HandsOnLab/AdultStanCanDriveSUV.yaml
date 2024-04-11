@@ -1,0 +1,22 @@
+name: DevoxxFr2024
+model_file: ./devoxx-fr-2024.fga
+tuples: 
+  - user: user:Randy
+    relation: owner
+    object: car:SUV
+tests:
+  - name: conditional-relationship
+    description: Let Randy's adult son Stan drive the SUV
+    tuples:
+      - user: user:Stan
+        relation: driver
+        object: car:SUV
+        condition:
+          name: allowed_age
+          context:
+            age: 18
+    check:
+      - user: user:Stan
+        object: car:SUV
+        assertions:
+          driver: true
