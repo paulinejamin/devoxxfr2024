@@ -3,10 +3,12 @@ model
   
 type user
 
+type staff
+
 type entity
   relations
     define admin: [user]
-    define staff: [user]
+    define staff: [staff]
     define member: [user] or admin
     define view_payments: admin or staff
     define approve_payments: admin

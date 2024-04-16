@@ -7,11 +7,11 @@ tuples:
   - user: user:Alice
     relation: admin
     object: entity:devoxx
-  - user: user:Sophie
+  - user: staff:Sophie
     relation: staff
     object: entity:devoxx
 tests:
-  - name: approve_  payments
+  - name: approve_payments
     description: Only admins can approve payments
     check:
       - user: user:Marco
@@ -22,7 +22,7 @@ tests:
         object: entity:devoxx
         assertions:
           approve_payments: true
-      - user: user:Sophie
+      - user: staff:Sophie
         object: entity:devoxx
         assertions:
           approve_payments: false
@@ -37,7 +37,7 @@ tests:
         object: entity:devoxx
         assertions:
           view_payments: true
-      - user: user:Sophie
+      - user: staff:Sophie
         object: entity:devoxx
         assertions:
           view_payments: true
