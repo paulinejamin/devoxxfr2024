@@ -1,19 +1,21 @@
 model
   schema 1.1
-  
+
 type user
+  relations
+    define parent: [user]
 
 type car
   relations
+    define driver: ([family#parent, user with allowed_age] or owner) but not parent from owner
     define owner: [user]
-    define driver: [family#parent, user with allowed_age] or owner
     define viewer: [user:*] or driver
-    
+
 type family
   relations
-    define parent: [user]
     define child: [user]
-    
+    define parent: [user]
+
 condition allowed_age(age: int) {
   age >= 18
 }
